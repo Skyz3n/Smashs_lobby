@@ -98,31 +98,37 @@ public class PlayerListener implements Listener {
         Title.sendTabTitle(p, "&7Bienvenue sur §eSmashs§7, " + p.getDisplayName(), "§7Vous pouvez nous suivre sur twitter: §b@SmashsFR");
 
         if (r.getPower() == 100) {
+            Bukkit.broadcastMessage("Join ! rank=" + r.getName() + "; power=" + r.getPower());
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             admin.addPlayer(p);
         } else if (r.getPower() == 50)
         {
+            Bukkit.broadcastMessage("Join ! rank=" + r.getName() + "; power=" + r.getPower());
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             modo.addPlayer(p);
         } else if (r.getPower() == 40)
         {
+            Bukkit.broadcastMessage("Join ! rank=" + r.getName() + "; power=" + r.getPower());
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             premium.addPlayer(p);
         } else if (r.getPower() == 30)
         {
+            Bukkit.broadcastMessage("Join ! rank=" + r.getName() + "; power=" + r.getPower());
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             vip.addPlayer(p);
         } else if (r.getPower() == 10)
         {
+            Bukkit.broadcastMessage("Join ! rank=" + r.getName() + "; power=" + r.getPower());
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             ami.addPlayer(p);
         } else if (r.getPower() == 0)
         {
+            Bukkit.broadcastMessage("Join ! rank=" + r.getName() + "; power=" + r.getPower());
             e.setJoinMessage(null);
             p.setPlayerListName("" + r.getName() + " " + p.getName());
             joueur.addPlayer(p);
