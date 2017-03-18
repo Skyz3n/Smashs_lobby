@@ -1,19 +1,14 @@
 package skyzen.rank;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.bukkit.entity.Player;
-
 import skyzen.event.PlayerListener;
 import skyzen.lobby.Lobby;
 import skyzen.playercache.PlayerData;
-import skyzen.rank.Rank;
 
-public class SqlConnection {
+import java.sql.*;
+
+public class SqlConnection
+{
 
     private Connection connection;
     private String urlbase, host, database, user, pass;
@@ -21,7 +16,8 @@ public class SqlConnection {
     private Lobby pl;
     private PlayerListener pl1;
 
-    public SqlConnection(PlayerListener pl1, Lobby pl, String urlbase, String host, String database, String user, String pass) {
+    public SqlConnection(PlayerListener pl1, Lobby pl, String urlbase, String host, String database, String user, String pass)
+    {
         this.urlbase = urlbase;
         this.host = host;
         this.database = database;
@@ -31,66 +27,81 @@ public class SqlConnection {
         this.pass = pass;
     }
 
-    public void connection() {
-        if (!isConnected()) {
-            try {
+    public void connection()
+    {
+        if (!isConnected())
+        {
+            try
+            {
                 connection = DriverManager.getConnection(urlbase + host + "/" + database, user, pass);
                 System.out.println("connected ok");
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 e.printStackTrace();
             }
         }
     }
 
-    public void disconnect() {
-        if (isConnected()) {
-            try {
+    public void disconnect()
+    {
+        if (isConnected())
+        {
+            try
+            {
                 connection.close();
                 System.out.println("connected off");
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 e.printStackTrace();
             }
         }
     }
 
-    public boolean isConnected() {
+    public boolean isConnected()
+    {
         return connection != null;
     }
 
-    public void createAccount(Player player) {
-        if (!hasAccount(player)) {
-            try {
+    public void createAccount(Player player)
+    {
+        if (!hasAccount(player))
+        {
+            try
+            {
                 PreparedStatement q = connection.prepareStatement("INSERT INTO joueurs(uuid,grade,coins) VALUES (?,?,?)");
                 q.setString(1, player.getUniqueId().toString());
                 q.setInt(2, Rank.JOUEUR.getPower());
                 q.setInt(3, 100);
                 q.execute();
                 q.close();
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 e.printStackTrace();
             }
-
-
         }
     }
 
-    public boolean hasAccount(Player player) {
-        try {
+    public boolean hasAccount(Player player)
+    {
+        try
+        {
             PreparedStatement q = connection.prepareStatement("SELECT uuid FROM joueurs WHERE uuid = ?");
             q.setString(1, player.getUniqueId().toString());
             ResultSet resultat = q.executeQuery();
             boolean hasAccount = resultat.next();
             q.close();
             return hasAccount;
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             e.printStackTrace();
         }
-
         return false;
     }
 
-    public void setRank(Player player, Rank rank) {
-        if (pl1.dataPlayers.containsKey(player)) {
+    public void setRank(Player player, Rank rank)
+    {
+        if (pl1.dataPlayers.containsKey(player))
+        {
             PlayerData dataP = pl1.dataPlayers.get(player);
             dataP.setRank(rank);
             pl1.dataPlayers.remove(player);
@@ -98,16 +109,20 @@ public class SqlConnection {
         }
     }
 
-    public Rank getRank(Player player) {
-        if (pl1.dataPlayers.containsKey(player)) {
+    public Rank getRank(Player player)
+    {
+        if (pl1.dataPlayers.containsKey(player))
+        {
             PlayerData dataP = pl1.dataPlayers.get(player);
             return dataP.getRank();
         }
         return Rank.JOUEUR;
     }
 
-    public int getBalance(Player p) {
-        if (pl1.dataPlayers.containsKey(p)) {
+    public int getBalance(Player p)
+    {
+        if (pl1.dataPlayers.containsKey(p))
+        {
             PlayerData dataP = pl1.dataPlayers.get(p);
             return dataP.getCoins();
         }
@@ -115,8 +130,10 @@ public class SqlConnection {
         return 0;
     }
 
-    public void addMoney(Player p, int montant) {
-        if (pl1.dataPlayers.containsKey(p)) {
+    public void addMoney(Player p, int montant)
+    {
+        if (pl1.dataPlayers.containsKey(p))
+        {
             PlayerData dataP = pl1.dataPlayers.get(p);
             int coins = dataP.getCoins() + montant;
             dataP.setCoins(coins);
@@ -125,14 +142,15 @@ public class SqlConnection {
         }
     }
 
-    public void removeMoney(Player p, int montant) {
-        if (pl1.dataPlayers.containsKey(p)) {
+    public void removeMoney(Player p, int montant)
+    {
+        if (pl1.dataPlayers.containsKey(p))
+        {
             PlayerData dataP = pl1.dataPlayers.get(p);
             int coins = dataP.getCoins() - montant;
 
-            if (coins <= 0) {
+            if (coins <= 0)
                 return;
-            }
 
             dataP.setCoins(coins);
             pl1.dataPlayers.remove(p);
@@ -141,9 +159,12 @@ public class SqlConnection {
 
     }
 
-    public PlayerData getPlayerData(Player player) {
-        if (!pl1.dataPlayers.containsKey(player)) {
-            try {
+    public PlayerData getPlayerData(Player player)
+    {
+        if (!pl1.dataPlayers.containsKey(player))
+        {
+            try
+            {
                 PreparedStatement rs = connection.prepareStatement("SELECT coins, grade FROM joueurs WHERE uuid = ?");
                 rs.setString(1, player.getUniqueId().toString());
                 ResultSet resultats = rs.executeQuery();
@@ -151,7 +172,8 @@ public class SqlConnection {
                 int coins = 0;
                 Rank rank = Rank.JOUEUR;
 
-                while (resultats.next()) {
+                while (resultats.next())
+                {
                     coins = resultats.getInt("coins");
                     rank = Rank.powerToRank(resultats.getInt("grade"));
                 }
@@ -161,29 +183,34 @@ public class SqlConnection {
                 dataP.setRank(rank);
                 return dataP;
 
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 e.printStackTrace();
             }
         }
         return new PlayerData();
     }
 
-    public void updatePlayerData(Player player) {
-        if (pl1.dataPlayers.containsKey(player)) {
+    public void updatePlayerData(Player player)
+    {
+        if (pl1.dataPlayers.containsKey(player))
+        {
             PlayerData dataP = pl1.dataPlayers.get(player);
 
             int coins = dataP.getCoins();
             Rank rank = dataP.getRank();
             int power = rank.getPower();
 
-            try {
+            try
+            {
                 PreparedStatement rs = connection.prepareStatement("UPDATE joueurs SET grade = ?, coins = ? WHERE uuid = ?");
                 rs.setInt(1, power);
                 rs.setInt(2, coins);
                 rs.setString(3, player.getUniqueId().toString());
                 rs.executeUpdate();
                 rs.close();
-            } catch (SQLException e) {
+            } catch (SQLException e)
+            {
                 e.printStackTrace();
             }
         }

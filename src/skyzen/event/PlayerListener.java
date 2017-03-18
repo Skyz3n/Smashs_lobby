@@ -1,8 +1,5 @@
 package skyzen.event;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -19,7 +16,6 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
-
 import skyzen.lobby.Lobby;
 import skyzen.playercache.PlayerData;
 import skyzen.playercache.PlayerDataManager;
@@ -28,11 +24,11 @@ import skyzen.rank.SqlConnection;
 import skyzen.utils.ItemModifier;
 import skyzen.utils.Title;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlayerListener implements Listener {
 
-    public SqlConnection sql;
-    public PlayerDataManager dataManager = new PlayerDataManager(this);
-    public Map<Player, PlayerData> dataPlayers = new HashMap<>();
     public final Lobby main;
     private final ScoreboardManager manager;
     private final Scoreboard board;
@@ -42,6 +38,9 @@ public class PlayerListener implements Listener {
     private final Team vip;
     private final Team ami;
     private final Team joueur;
+    public SqlConnection sql;
+    public PlayerDataManager dataManager = new PlayerDataManager(this);
+    public Map<Player, PlayerData> dataPlayers = new HashMap<>();
 
     public PlayerListener(Lobby main) {
         this.main = main;
@@ -86,9 +85,8 @@ public class PlayerListener implements Listener {
         p.sendMessage("");
         p.sendMessage("");
         p.sendMessage("§eConnexion sur Smashs en cours...");
-        for (int x = 0; x < 9; x++) {
+        for (int x = 0; x < 10; x++)
             p.sendMessage("");
-        }
         p.sendMessage("§6-----------------------------------------------------");
         p.sendMessage("§cNous vous rappelons que le serveur est en version §bBêta");
         p.sendMessage("§cMerci d'accepter les certains bugs liés au sereur.");
@@ -103,28 +101,34 @@ public class PlayerListener implements Listener {
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             admin.addPlayer(p);
-        }
-        if (r.getPower() == 50) {
+        } else if (r.getPower() == 50)
+        {
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             modo.addPlayer(p);
-        }
-        if (r.getPower() == 40) {
+        } else if (r.getPower() == 40)
+        {
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             premium.addPlayer(p);
-        }
-        if (r.getPower() == 30) {
+        } else if (r.getPower() == 30)
+        {
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             vip.addPlayer(p);
-        }
-        if (r.getPower() == 10) {
+        } else if (r.getPower() == 10)
+        {
             e.setJoinMessage(r.getName() + " " + p.getName() + " §7a rejoint le hub !");
             p.setPlayerListName(" " + r.getName() + " " + p.getName());
             ami.addPlayer(p);
-        }
-        if (r.getPower() == 0) {
+        } else if (r.getPower() == 0)
+        {
+            e.setJoinMessage(null);
+            p.setPlayerListName("" + r.getName() + " " + p.getName());
+            joueur.addPlayer(p);
+        } else
+        {
+            Bukkit.broadcastMessage("erreur: power inconnu (power=" + r.getPower() + ")");
             e.setJoinMessage(null);
             p.setPlayerListName("" + r.getName() + " " + p.getName());
             joueur.addPlayer(p);
