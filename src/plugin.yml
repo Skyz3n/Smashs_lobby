@@ -1,0 +1,10 @@
+main: skyzen.lobby.Lobby
+
+name: Smashs
+version: 1.0
+author: Skyzen
+
+commands:
+  money:
+    description: Commande magique
+    aliases: [coins]
