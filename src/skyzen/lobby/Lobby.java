@@ -19,6 +19,7 @@ public class Lobby extends JavaPlugin implements Listener {
     private PlayerListener PlayerListener;
 
     public void onEnable() {
+        getServer().getPluginManager().registerEvents(this.PlayerListener = new PlayerListener(this), this);
         sql = new SqlConnection(PlayerListener, this, "jdbc:mysql://", "localhost", "smashs", "root", "");
         sql.connection();
 
