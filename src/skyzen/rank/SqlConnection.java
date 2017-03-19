@@ -1,7 +1,6 @@
 package skyzen.rank;
 
 import org.bukkit.entity.Player;
-import skyzen.event.PlayerListener;
 import skyzen.lobby.Lobby;
 import skyzen.playercache.PlayerData;
 
@@ -12,18 +11,15 @@ public class SqlConnection
 
     private Connection connection;
     private String urlbase, host, database, user, pass;
-    @SuppressWarnings("unused")
     private Lobby pl;
-    private PlayerListener pl1;
 
-    public SqlConnection(PlayerListener pl1, Lobby pl, String urlbase, String host, String database, String user, String pass)
+    public SqlConnection(Lobby pl, String urlbase, String host, String database, String user, String pass)
     {
         this.urlbase = urlbase;
         this.host = host;
         this.database = database;
         this.user = user;
         this.pl = pl;
-        this.pl1 = pl1;
         this.pass = pass;
     }
 
@@ -100,20 +96,20 @@ public class SqlConnection
 
     public void setRank(Player player, Rank rank)
     {
-        if (pl1.dataPlayers.containsKey(player))
+        if (pl.dataPlayers.containsKey(player))
         {
-            PlayerData dataP = pl1.dataPlayers.get(player);
+            PlayerData dataP = pl.dataPlayers.get(player);
             dataP.setRank(rank);
-            pl1.dataPlayers.remove(player);
-            pl1.dataPlayers.put(player, dataP);
+            pl.dataPlayers.remove(player);
+            pl.dataPlayers.put(player, dataP);
         }
     }
 
     public Rank getRank(Player player)
     {
-        if (pl1.dataPlayers.containsKey(player))
+        if (pl.dataPlayers.containsKey(player))
         {
-            PlayerData dataP = pl1.dataPlayers.get(player);
+            PlayerData dataP = pl.dataPlayers.get(player);
             return dataP.getRank();
         }
         return Rank.JOUEUR;
@@ -121,9 +117,9 @@ public class SqlConnection
 
     public int getBalance(Player p)
     {
-        if (pl1.dataPlayers.containsKey(p))
+        if (pl.dataPlayers.containsKey(p))
         {
-            PlayerData dataP = pl1.dataPlayers.get(p);
+            PlayerData dataP = pl.dataPlayers.get(p);
             return dataP.getCoins();
         }
 
@@ -132,36 +128,36 @@ public class SqlConnection
 
     public void addMoney(Player p, int montant)
     {
-        if (pl1.dataPlayers.containsKey(p))
+        if (pl.dataPlayers.containsKey(p))
         {
-            PlayerData dataP = pl1.dataPlayers.get(p);
+            PlayerData dataP = pl.dataPlayers.get(p);
             int coins = dataP.getCoins() + montant;
             dataP.setCoins(coins);
-            pl1.dataPlayers.remove(p);
-            pl1.dataPlayers.put(p, dataP);
+            pl.dataPlayers.remove(p);
+            pl.dataPlayers.put(p, dataP);
         }
     }
 
     public void removeMoney(Player p, int montant)
     {
-        if (pl1.dataPlayers.containsKey(p))
+        if (pl.dataPlayers.containsKey(p))
         {
-            PlayerData dataP = pl1.dataPlayers.get(p);
+            PlayerData dataP = pl.dataPlayers.get(p);
             int coins = dataP.getCoins() - montant;
 
             if (coins <= 0)
                 return;
 
             dataP.setCoins(coins);
-            pl1.dataPlayers.remove(p);
-            pl1.dataPlayers.put(p, dataP);
+            pl.dataPlayers.remove(p);
+            pl.dataPlayers.put(p, dataP);
         }
 
     }
 
     public PlayerData getPlayerData(Player player)
     {
-        if (!pl1.dataPlayers.containsKey(player))
+        if (!pl.dataPlayers.containsKey(player))
         {
             try
             {
@@ -193,9 +189,9 @@ public class SqlConnection
 
     public void updatePlayerData(Player player)
     {
-        if (pl1.dataPlayers.containsKey(player))
+        if (pl.dataPlayers.containsKey(player))
         {
-            PlayerData dataP = pl1.dataPlayers.get(player);
+            PlayerData dataP = pl.dataPlayers.get(player);
 
             int coins = dataP.getCoins();
             Rank rank = dataP.getRank();

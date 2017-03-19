@@ -2,13 +2,13 @@ package skyzen.playercache;
 
 import org.bukkit.entity.Player;
 
-import skyzen.event.PlayerListener;
+import skyzen.lobby.Lobby;
 
 public class PlayerDataManager {
 
-    private PlayerListener pl;
+    private Lobby pl;
 
-    public PlayerDataManager(PlayerListener pl) {
+    public PlayerDataManager(Lobby pl) {
         this.pl = pl;
     }
 
