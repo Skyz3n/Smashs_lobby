@@ -5,12 +5,16 @@ import java.util.Map;
 
 import org.bukkit.ChatColor;
 
-public enum Rank {
+public enum Rank{
 
     ADMINISTRATEUR(100, "§c[Administrateur]", ChatColor.RED),
+    DEVELOPPEUR(80, "§9[Développeur]", ChatColor.BLUE),
+    RESPMODO(70, "§a[Resp.Modérateur]", ChatColor.GREEN),
+    YOUTUBEUR(60, "§d[Youtubeur]", ChatColor.LIGHT_PURPLE),
     MODERATEUR(50, "§a[Modérateur]", ChatColor.GREEN),
-    PREMIUM(40, "§6[Premium]", ChatColor.GOLD),
-    VIP(30, "§e[Vip]", ChatColor.YELLOW),
+    HELPER(40, "§f[Helper]", ChatColor.WHITE),
+    PREMIUM(30, "§6[Premium]", ChatColor.GOLD),
+    VIP(20, "§e[Vip]", ChatColor.YELLOW),
     AMI(10, "§3[Ami]", ChatColor.AQUA),
     JOUEUR(0, "§7", ChatColor.GRAY);
 
@@ -46,5 +50,4 @@ public enum Rank {
     public static Rank powerToRank(int power) {
         return grade.get(power);
     }
-
 }

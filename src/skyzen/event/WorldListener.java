@@ -16,9 +16,16 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import skyzen.rank.SqlConnection;
 import skyzen.utils.Title;
 
 public class WorldListener implements Listener {
+
+    private SqlConnection sql;
+
+    public WorldListener(SqlConnection sql) {
+        this.sql = sql;
+    }
 
     @EventHandler
     public void cancelPickup(PlayerPickupItemEvent e) {
@@ -61,25 +68,25 @@ public class WorldListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerFall(PlayerMoveEvent event) {
-        final Player player = event.getPlayer();
+    public void onPlayerFall(PlayerMoveEvent e) {
+        final Player p = e.getPlayer();
 
-        if (event.isCancelled())
+        if (e.isCancelled())
             return;
-        if (!player.isOp()) {
-            if (event.getTo().getBlockX() == 141) {
-                player.teleport((new Location(player.getWorld(), 1.599, 83, -0.532, -90.2f, -5.2f)));
-                player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
-                player.sendMessage("§6-----------------------------------------------------");
-                player.sendMessage("§bVous devez être au moins §aVIP §bpour rejoindre la Zone VIP");
-                player.sendMessage("§cBoutique: §d§nshop.smashs.fr");
-                player.sendMessage("§6-----------------------------------------------------");
-            }
+        if (e.getTo().getBlockY() <= 1) {
+            p.teleport((new Location(p.getWorld(), 1.599, 83, -0.532, -90.2f, -5.2f)));
+            Title.sendTitle(p, 20, 20, 20, "", "§7Ne vous éloignez pas trop, c'est dangereux");
+            p.sendMessage("§7Ne vous éloignez pas trop, c'est dangereux !");
         }
-        if (event.getTo().getBlockY() <= 1) {
-            player.teleport((new Location(player.getWorld(), 1.599, 83, -0.532, -90.2f, -5.2f)));
-            Title.sendTitle(player, 20, 20, 20, "", "§7Ne vous éloignez pas trop, c'est dangereux");
-            player.sendMessage("§7Ne vous éloignez pas trop, c'est dangereux !");
+        if (sql.getRank(p).getPower() == 0) {
+            if (e.getTo().getBlockX() == 141 && e.getTo().getBlockY() < 200) {
+                p.teleport((new Location(p.getWorld(), 1.599, 83, -0.532, -90.2f, -5.2f)));
+                p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
+                p.sendMessage("§6-----------------------------------------------------");
+                p.sendMessage("§bVous devez être au moins §aVIP §bpour rejoindre la Zone VIP");
+                p.sendMessage("§cBoutique: §d§nshop.smashs.fr");
+                p.sendMessage("§6-----------------------------------------------------");
+            }
         }
     }
 

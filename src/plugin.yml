@@ -6,5 +6,10 @@ author: Skyzen
 
 commands:
   money:
-    description: Commande magique
+    description: Commande des coins
     aliases: [coins]
+  msg:
+    description: Messages privées
+  grade:
+    description: Commande des grades
+    aliases: [rank]

@@ -1,6 +1,7 @@
 package skyzen.event;
 
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,8 +9,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.util.Vector;
+import skyzen.rank.SqlConnection;
 
 public class DoubleJump implements Listener {
+
+    private SqlConnection sql;
+
+    public DoubleJump(SqlConnection sql) {
+        this.sql = sql;
+    }
 
     @SuppressWarnings("deprecation")
     @EventHandler
@@ -18,16 +26,16 @@ public class DoubleJump implements Listener {
         if (!p.isOnGround())
             return;
         p.setAllowFlight(true);
-        if (!p.isOp())
+        if (sql.getRank(p).getPower() == 0)
             p.setAllowFlight(false);
     }
 
     @EventHandler
     public void onDoubleJump(PlayerToggleFlightEvent e) {
         final Player p = e.getPlayer();
-        if (!e.isFlying() && !p.isOp())
+        if (!e.isFlying() && sql.getRank(p).getPower() == 0)
             return;
-        if (p.getGameMode() == GameMode.CREATIVE && !p.isOp())
+        if (p.getGameMode() == GameMode.CREATIVE && sql.getRank(p).getPower() == 0)
             return;
         e.setCancelled(true);
         p.setAllowFlight(false);

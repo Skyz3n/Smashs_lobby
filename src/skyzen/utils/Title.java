@@ -1,16 +1,9 @@
 package skyzen.utils;
 
+import net.minecraft.server.v1_11_R1.*;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-
-import net.minecraft.server.v1_9_R2.IChatBaseComponent;
-import net.minecraft.server.v1_9_R2.PacketPlayOutChat;
-import net.minecraft.server.v1_9_R2.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_9_R2.PacketPlayOutTitle;
-import net.minecraft.server.v1_9_R2.PlayerConnection;
-import net.minecraft.server.v1_9_R2.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_9_R2.PacketPlayOutTitle.EnumTitleAction;
 
 import java.lang.reflect.Field;
 
@@ -21,14 +14,14 @@ public class Title {
 
         PacketPlayOutTitle packetPlayOutTimes = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TIMES, null, fadeIn, stay, fadeOut);
         connection.sendPacket(packetPlayOutTimes);
-        if (subtitle != null) {
+        if (subtitle != null){
             subtitle = subtitle.replaceAll("%player%", player.getDisplayName());
             subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
             IChatBaseComponent titleSub = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
             PacketPlayOutTitle packetPlayOutSubTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, titleSub);
             connection.sendPacket(packetPlayOutSubTitle);
         }
-        if (title != null) {
+        if (title != null){
             title = title.replaceAll("%player%", player.getDisplayName());
             title = ChatColor.translateAlternateColorCodes('&', title);
             IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
@@ -66,12 +59,12 @@ public class Title {
     }
 
     public static void sendTime(Player player, int ticks) {
-        PacketPlayOutTitle titlepacket = new PacketPlayOutTitle(EnumTitleAction.TIMES, null, 20, ticks, 20);
+        PacketPlayOutTitle titlepacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TIMES, null, 20, ticks, 20);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlepacket);
     }
 
     public static void sendActionBar(Player player, String message) {
-        IChatBaseComponent basetitle = ChatSerializer.a("{\"text\": \"" + message + "\"}");
+        IChatBaseComponent basetitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
         PacketPlayOutChat packet = new PacketPlayOutChat(basetitle, (byte) 2);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
     }
