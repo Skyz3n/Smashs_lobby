@@ -11,8 +11,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class InventoryListener implements Listener {
 
     @EventHandler
-    public void onClickBed(InventoryClickEvent event) {
-        if (event.getCurrentItem().getType() == Material.BED) {
+    public void onClickBed(InventoryClickEvent event){
+        if (event.getCurrentItem().getType() != null && event.getCurrentItem().getType() == Material.BED){
 
             Player player = (Player) event.getWhoClicked();
 
@@ -28,7 +28,7 @@ public class InventoryListener implements Listener {
 
     @EventHandler
     public void onClickAxe(InventoryClickEvent event) {
-        if (event.getCurrentItem().getType() == Material.IRON_AXE) {
+        if (event.getCurrentItem().getType() != null && event.getCurrentItem().getType() == Material.IRON_AXE){
 
             Player player = (Player) event.getWhoClicked();
 
@@ -44,7 +44,7 @@ public class InventoryListener implements Listener {
 
     @EventHandler
     public void onClickBoots(InventoryClickEvent event) {
-        if (event.getCurrentItem().getType() == Material.GOLD_BOOTS) {
+        if (event.getCurrentItem().getType() != null && event.getCurrentItem().getType() == Material.GOLD_BOOTS) {
 
             Player player = (Player) event.getWhoClicked();
 
