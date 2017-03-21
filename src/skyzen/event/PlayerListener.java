@@ -25,6 +25,7 @@ public class PlayerListener implements Listener {
         this.sql = sql;
     }
 
+    @Deprecated
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
@@ -91,16 +92,26 @@ public class PlayerListener implements Listener {
         Title.sendTitle(p, 20, 50, 20, "§bBienvenue sur le serveur §eSmashs", "§7Le serveur est en §6Beta");
         Title.sendTabTitle(p, "&7Bienvenue sur §eSmashs§7, " + p.getDisplayName(), "§7Vous pouvez nous suivre sur twitter: §b@SmashsFR");
 
-        //Inventaire du joueur quand il rejoint
+        //Inventaire
         PlayerInventory inv = p.getInventory();
         inv.clear();
+
         inv.setItem(0, ItemModifier.setText(new ItemStack(Material.NAME_TAG, 1), "§bSélecteur de jeux"));
-        inv.setItem(1, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§eProfil"));
-        inv.setItem(4, ItemModifier.setText(new ItemStack(Material.CHEST, 1), "§aSmashsChest"));
+        inv.setItem(1, ItemModifier.setText(new ItemStack(Material.CHEST, 1), "§aSmashsChest"));
         inv.setItem(7, ItemModifier.setText(new ItemStack(Material.EMERALD, 1), "§6Boutique"));
         inv.setItem(8, ItemModifier.setText(new ItemStack(Material.NETHER_STAR, 1), "§6Sélecteur de Hubs"));
-        if (sql.getRank(p).getPower() == 100 || sql.getRank(p).getPower() == 70 || sql.getRank(p).getPower() == 50)
-            inv.setItem(13, ItemModifier.setText(new ItemStack(Material.BOOK_AND_QUILL, 1), "§aGestion du serveur"));
+
+        inv.setItem(9, ItemModifier.setText(new ItemStack(Material.GOLD_BOOTS, 1), "§eJump", "§7Accéder au jump"));
+        inv.setItem(12, ItemModifier.setText(new ItemStack(Material.BOOK, 1), "§6Succés"));
+        inv.setItem(13, ItemModifier.setText(new ItemStack(Material.BED, 1), "§6Retour au spawn"));
+        inv.setItem(14, ItemModifier.setText(new ItemStack(Material.PAPER, 1), "§6Informations", "§7Forum: §dforum.smashs.fr", "§7Boutique: §ashop.smashs.fr", "§7Teamspeak: §ets.smashs.fr"));
+        inv.setItem(17, ItemModifier.setText(new ItemStack(Material.COOKED_FISH, 1), "§eAmis", "§7Voir ses amis"));
+
+        if(sql.getRank(p).getPower() >= 10)
+        inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: " + sql.getRank(p).getName(), "§7Coins: §e" + sql.getBalance(p), "§7Booster: §cBientôt"));
+        else{
+            inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: Joueur", "§7Coins: §e" + sql.getBalance(p), "§7Booster: §cBientôt"));
+        }
     }
 
     @EventHandler

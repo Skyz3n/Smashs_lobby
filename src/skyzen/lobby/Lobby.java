@@ -13,6 +13,8 @@ import skyzen.cmds.MsgCMD;
 import skyzen.event.DoubleJump;
 import skyzen.event.PlayerListener;
 import skyzen.event.WorldListener;
+import skyzen.menus.InventoryListener;
+import skyzen.menus.Jeux;
 import skyzen.playercache.PlayerData;
 import skyzen.playercache.PlayerDataManager;
 import skyzen.rank.SqlConnection;
@@ -36,6 +38,8 @@ public class Lobby extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new WorldListener(sql), this);
         getServer().getPluginManager().registerEvents(new DoubleJump(sql), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(sql), this);
+        getServer().getPluginManager().registerEvents(new Jeux(sql), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
 
         getCommand("money").setExecutor(new CoinsCMD(sql));
         getCommand("grade").setExecutor(new GradeCMD(sql));
