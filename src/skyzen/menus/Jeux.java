@@ -1,47 +1,25 @@
 package skyzen.menus;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import skyzen.rank.SqlConnection;
-import skyzen.utils.ItemModifier;
 
-public class Jeux implements Listener {
+public class Jeux implements CommandExecutor {
 
-    private SqlConnection sql;
-
-    public Jeux(SqlConnection sql) {
-        this.sql = sql;
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        Player p = (Player) sender;
+        if(label.equalsIgnoreCase("jeux")){
+            JeuxOpen(p);
+        }
+        return false;
     }
 
-    @EventHandler
-    public void onClickArrow(InventoryClickEvent event) {
-        if (!event.getInventory().getTitle().equalsIgnoreCase("Sélecteur de Jeux")) return;
-        if (event.getCurrentItem().getType() == Material.ARROW) {
-            event.getWhoClicked().closeInventory();
-            return;
-        }
-    }
+    public void JeuxOpen(Player player){
+        Inventory inv = Bukkit.createInventory(null, (9*6), "Sélecteur de jeux");
 
-    @EventHandler
-    public void onClick(PlayerInteractEvent event) {
-        if (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) || event.getItem() == null) return;
-        if (event.getItem().getType() == Material.NAME_TAG){
-            final Inventory inv = Bukkit.createInventory(event.getPlayer(), 36, "Sélecteur de Jeux");
-            Player player = event.getPlayer();
-
-            //fermer l'inventaire
-            inv.setItem(35, ItemModifier.setText(new ItemStack(Material.ARROW, 1), "§fFermer l'inventaire", ""));
-
-            //ouvrir l'inventaire
-            event.getPlayer().openInventory(inv);
-        }
+            player.openInventory(inv);
     }
 }

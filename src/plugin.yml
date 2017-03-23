@@ -5,11 +5,16 @@ version: 1.0
 author: Skyzen
 
 commands:
-  money:
+  coins:
     description: Commande des coins
-    aliases: [coins]
   msg:
     description: Messages privées
   grade:
     description: Commande des grades
     aliases: [rank]
+  jeux:
+      description: Commande des jeux
+  tp:
+    description: Commande de tp
+  list:
+    description: Commande de list
