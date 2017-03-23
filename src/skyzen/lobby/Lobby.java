@@ -1,16 +1,15 @@
 package skyzen.lobby;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import skyzen.cmds.CoinsCMD;
-import skyzen.cmds.GradeCMD;
-import skyzen.cmds.ListCMD;
-import skyzen.cmds.MsgCMD;
+import skyzen.cmds.*;
+import skyzen.event.ActionBarMessage;
 import skyzen.event.DoubleJump;
 import skyzen.event.PlayerListener;
 import skyzen.event.WorldListener;
@@ -41,6 +40,7 @@ public class Lobby extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new DoubleJump(sql), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(sql), this);
         getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new ActionBarMessage(this), this);
 
         getCommand("coins").setExecutor(new CoinsCMD(sql));
         getCommand("grade").setExecutor(new GradeCMD(sql));
@@ -48,6 +48,7 @@ public class Lobby extends JavaPlugin implements Listener {
         getCommand("jeux").setExecutor(new Jeux());
         getCommand("tp").setExecutor(new Teleportation());
         getCommand("list").setExecutor(new ListCMD());
+        getCommand("ban").setExecutor(new BanCMD(sql));
 
         consoleSender.sendMessage(" ");
         consoleSender.sendMessage(ChatColor.GREEN + "==================================================");

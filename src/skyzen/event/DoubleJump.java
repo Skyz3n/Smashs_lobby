@@ -1,7 +1,7 @@
 package skyzen.event;
 
+import net.minecraft.server.v1_11_R1.EnumParticle;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.util.Vector;
 import skyzen.rank.SqlConnection;
+import skyzen.utils.Particle;
 
 public class DoubleJump implements Listener {
 
@@ -30,6 +31,7 @@ public class DoubleJump implements Listener {
             p.setAllowFlight(false);
     }
 
+    @SuppressWarnings("deprecation")
     @EventHandler
     public void onDoubleJump(PlayerToggleFlightEvent e) {
         final Player p = e.getPlayer();
@@ -44,5 +46,7 @@ public class DoubleJump implements Listener {
         p.setVelocity(v);
         p.setFlying(false);
         p.playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, 1);
+        Particle particle = new Particle(EnumParticle.CLOUD, p.getLocation().add(0,2.25,0), true, 0.75f, 0.75f, 0.75f, 0, 35);
+        particle.sendPlayer(p);
     }
 }

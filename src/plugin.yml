@@ -18,3 +18,5 @@ commands:
     description: Commande de tp
   list:
     description: Commande de list
+  ban:
+    description: Commande de ban

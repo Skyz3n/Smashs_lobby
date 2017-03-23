@@ -1,4 +1,8 @@
 // La zone VIP
-// Messages Action bar
 // Boss bar Message
 // SmashsCredits
+// Menu du jeu
+// Propulseur
+// mute command
+// Unban
+// Quit messages
