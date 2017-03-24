@@ -28,45 +28,11 @@ public class PlayerListener implements Listener {
     @Deprecated
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
+        final Player p = e.getPlayer();
 
         for (Player p1 : Bukkit.getOnlinePlayers())
             p1.setLevel(Bukkit.getOnlinePlayers().size());
 
-        //Setup des messages et TabList
-        if (sql.getRank(p).getPower() == 100) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§1100", "§c[Admin] ", "");
-        } else if (sql.getRank(p).getPower() == 80) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§280", "§9[Développeur] ", "");
-        } else if (sql.getRank(p).getPower() == 70) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§370", "§a[Resp.Modérateur] ", "");
-        } else if (sql.getRank(p).getPower() == 60) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§460", "§d[Youtubeur] ", "");
-        } else if (sql.getRank(p).getPower() == 50) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§550", "§a[Modérateur] ", "");
-        } else if (sql.getRank(p).getPower() == 40) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§640", "§f[Helper] ", "");
-        } else if (sql.getRank(p).getPower() == 30) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§730", "§6[Premium] ", "");
-        } else if (sql.getRank(p).getPower() == 20) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§820", "§e[Vip] ", "");
-        } else if (sql.getRank(p).getPower() == 10) {
-            e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§910", "§3[Ami] ", "");
-        } else if (sql.getRank(p).getPower() == 0) {
-            e.setJoinMessage(null);
-            TeamsTagsManager.setNameTag(p, "§a", "§7", "");
-        }
-
-        //Setup du joueur quand il rejoint
         p.teleport((new Location(p.getWorld(), 1.599, 83, -0.532, -90.2f, -5.2f)));
         p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
@@ -74,20 +40,6 @@ public class PlayerListener implements Listener {
         p.setMaxHealth(10);
         p.setFoodLevel(20);
         p.setHealth(p.getMaxHealth());
-
-        //Message de bienvenue
-        p.sendMessage("");
-        p.sendMessage("");
-        p.sendMessage("§eConnexion sur Smashs en cours...");
-        for (int x = 0; x < 10; x++)
-            p.sendMessage("");
-        p.sendMessage("§6-----------------------------------------------------");
-        p.sendMessage("§cNous vous rappelons que le serveur est en version §bBêta");
-        p.sendMessage("§cMerci d'accepter les certains bugs liés au sereur.");
-        p.sendMessage("§cN'hésitez pas à nous signaler un bug sur §eforum.smashs.fr");
-        p.sendMessage(" ");
-        p.sendMessage("§aLe discord est disponible ici: §bhttps://discord.app/ §c(Test)");
-        p.sendMessage("§6-----------------------------------------------------");
 
         Title.sendTitle(p, 20, 50, 20, "§bBienvenue sur le serveur §eSmashs", "§7Le serveur est en §6Beta");
         Title.sendTabTitle(p, "&7Bienvenue sur §eSmashs§7, " + p.getDisplayName(), "§7Vous pouvez nous suivre sur twitter: §b@SmashsFR");
@@ -112,16 +64,5 @@ public class PlayerListener implements Listener {
         else{
             inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: Joueur", "§7Coins: §e" + sql.getBalance(p), "§7Booster: §cBientôt"));
         }
-    }
-
-    @EventHandler
-    public void Chat(AsyncPlayerChatEvent e) {
-        final Player p = e.getPlayer();
-        Rank r = sql.getRank(p);
-
-        if (r.getPower() >= 10)
-            e.setFormat(r.getName() + " " + p.getName() + " §8➽§f " + e.getMessage());
-        if (r.getPower() == 0)
-            e.setFormat(r.getName() + p.getName() + " §8➽§7 " + e.getMessage());
     }
 }

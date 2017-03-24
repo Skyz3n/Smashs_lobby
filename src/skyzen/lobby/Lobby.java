@@ -9,10 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import skyzen.cmds.*;
-import skyzen.event.ActionBarMessage;
-import skyzen.event.DoubleJump;
-import skyzen.event.PlayerListener;
-import skyzen.event.WorldListener;
+import skyzen.event.*;
 import skyzen.menus.InventoryListener;
 import skyzen.menus.Jeux;
 import skyzen.menus.Teleportation;
@@ -36,9 +33,13 @@ public class Lobby extends JavaPlugin implements Listener {
         sql.connection();
 
         getServer().getPluginManager().registerEvents(this, this);
-        getServer().getPluginManager().registerEvents(new WorldListener(sql), this);
-        getServer().getPluginManager().registerEvents(new DoubleJump(sql), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(sql), this);
+        getServer().getPluginManager().registerEvents(new MessageListener(sql), this);
+        getServer().getPluginManager().registerEvents(new WorldListener(sql), this);
+
+        getServer().getPluginManager().registerEvents(new Propulseur(), this);
+        getServer().getPluginManager().registerEvents(new DoubleJump(sql), this);
+
         getServer().getPluginManager().registerEvents(new InventoryListener(), this);
         getServer().getPluginManager().registerEvents(new ActionBarMessage(this), this);
 

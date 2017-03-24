@@ -1,8 +1,7 @@
 // La zone VIP
 // Boss bar Message
-// SmashsCredits
+// SmashsCoins
 // Menu du jeu
-// Propulseur
 // mute command
 // Unban
-// Quit messages
+// Cliquez sur l'item grace à son name et non pas au type de l'item pour eviter si il y'a les mêmes items

@@ -92,8 +92,7 @@ public class WorldListener implements Listener {
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent e) {
-        String msg = e.getMessage();
-        String[] args = msg.split(" ");
+        String[] args = e.getMessage().split(" ");
         if ((args[0].equalsIgnoreCase("/pl")) || (args[0].equalsIgnoreCase("/plugins"))) {
             e.setCancelled(true);
         } else if (((args[0].equalsIgnoreCase("/help")) || (args[0].equalsIgnoreCase("/?")))) {

@@ -1,6 +1,7 @@
 package skyzen.event;
 
 import net.minecraft.server.v1_11_R1.EnumParticle;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -15,14 +16,13 @@ import skyzen.utils.Particle;
 public class DoubleJump implements Listener {
 
     private SqlConnection sql;
-
     public DoubleJump(SqlConnection sql) {
         this.sql = sql;
     }
 
     @SuppressWarnings("deprecation")
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e) {
+    public void ActiveLeFly(PlayerMoveEvent e) {
         final Player p = e.getPlayer();
         if (!p.isOnGround())
             return;
@@ -33,7 +33,7 @@ public class DoubleJump implements Listener {
 
     @SuppressWarnings("deprecation")
     @EventHandler
-    public void onDoubleJump(PlayerToggleFlightEvent e) {
+    public void DoubleSaut(PlayerToggleFlightEvent e) {
         final Player p = e.getPlayer();
         if (!e.isFlying() && sql.getRank(p).getPower() == 0)
             return;
@@ -45,8 +45,10 @@ public class DoubleJump implements Listener {
         v = v.setY(Math.max(0.4F, v.getY())).multiply(2f);
         p.setVelocity(v);
         p.setFlying(false);
-        p.playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, 1);
         Particle particle = new Particle(EnumParticle.CLOUD, p.getLocation().add(0,2.25,0), true, 0.75f, 0.75f, 0.75f, 0, 35);
-        particle.sendPlayer(p);
+        for (Player pl : Bukkit.getOnlinePlayers()){
+            pl.playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, 1);
+            particle.sendPlayer(pl);
+        }
     }
 }
