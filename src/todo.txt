@@ -4,4 +4,8 @@
 // Menu du jeu
 // mute command
 // Unban
-// Cliquez sur l'item grace à son name et non pas au type de l'item pour eviter si il y'a les mêmes items
+// Hub command
+// Système de tyroliennes
+// Animaux
+// Fly
+// Bloquer l'interaction avec les coffres

@@ -9,26 +9,35 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
+import skyzen.rank.SqlConnection;
 
 public class Teleportation implements CommandExecutor {
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+    private SqlConnection sql;
+
+    public Teleportation(SqlConnection sql) {
+        this.sql = sql;
+    }
+
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
-        if(label.equalsIgnoreCase("tp")){
-            TpOpen(p);
+        if (sql.getRank(p).getPower() >= 40){
+            if (label.equalsIgnoreCase("tp")) {
+                TpOpen(p);
+            }
         }
         return false;
     }
 
-    public void TpOpen(Player player){
-        Inventory inv = Bukkit.createInventory(null, (9*6), "Téléportation");
-        for(Player playerOnline : Bukkit.getOnlinePlayers()){
+    public void TpOpen(Player player) {
+        Inventory inv = Bukkit.createInventory(null, (9 * 6), "Téléportation");
+        for (Player playerOnline : Bukkit.getOnlinePlayers()) {
             inv.addItem(getHead(playerOnline));
         }
         player.openInventory(inv);
     }
 
-    public ItemStack getHead(Player player){
+    public ItemStack getHead(Player player) {
         ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
         meta.setOwner(player.getName());

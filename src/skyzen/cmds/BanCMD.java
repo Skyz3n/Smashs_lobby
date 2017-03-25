@@ -23,11 +23,11 @@ public class BanCMD implements CommandExecutor {
             Player p = (Player) sender;
             if (sql.getRank(p).getPower() >= 70 || sql.getRank(p).getPower() == 50) {
                 if (args.length == 0) {
-                    sender.sendMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + "Mettre le joueur!");
+                    sender.sendMessage("§7[§eModération§7] §c/ban (Joueur) (Raison)");
                     return true;
                 }
                 if (args.length == 1) {
-                    sender.sendMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + "Veuillez renseigner une raison!");
+                    sender.sendMessage("§7[§eModération§7] §c/ban (Joueur) (Raison)");
                 }
                 Player target = Bukkit.getServer().getPlayer(args[0]);
                 OfflinePlayer offline = sender.getServer().getOfflinePlayer(args[0]);
@@ -36,8 +36,8 @@ public class BanCMD implements CommandExecutor {
                     Bukkit.broadcastMessage("§7[§9" + sender.getName() + "§7] §e" + offline.getName() + "§7 a été banni pour: §c" + args[1]);
                     return true;
                 }
-                if (target.isOp()){
-                    sender.sendMessage(ChatColor.DARK_RED + "» " + ChatColor.RED + "Vous ne pouvez pas bannir un administrateur");
+                if (sql.getRank(target).getPower() == 100){
+                    sender.sendMessage("§7[§eModération§7] §cVous ne pouvez pas bannir un Administrateur");
                     return true;
                 }
                 target.kickPlayer("§7Vous avez été banni par §e" + sender.getName() + " §7pour: §c" + args[1] + " §7!");

@@ -59,10 +59,19 @@ public class PlayerListener implements Listener {
         inv.setItem(14, ItemModifier.setText(new ItemStack(Material.PAPER, 1), "§6Informations", "§7Forum: §dforum.smashs.fr", "§7Boutique: §ashop.smashs.fr", "§7Teamspeak: §ets.smashs.fr"));
         inv.setItem(17, ItemModifier.setText(new ItemStack(Material.COOKED_FISH, 1), "§eAmis", "§7Voir ses amis"));
 
+        if(sql.getRank(p).getPower() >= 40)
+            inv.setItem(27, ItemModifier.setText(new ItemStack(Material.COMPASS, 1), "§eTéléportation", "§7Se téléporter à un joueur"));
+
         if(sql.getRank(p).getPower() >= 10)
-        inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: " + sql.getRank(p).getName(), "§7Coins: §e" + sql.getBalance(p), "§7Booster: §cBientôt"));
+        inv.setItem(35, ItemModifier.setText(new ItemStack(Material.EXP_BOTTLE, 1), "§eZone VIP", "§bRejoindre la Zone VIP"));
         else{
-            inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: Joueur", "§7Coins: §e" + sql.getBalance(p), "§7Booster: §cBientôt"));
+            inv.setItem(35, ItemModifier.setText(new ItemStack(Material.EXP_BOTTLE, 1), "§eZone VIP", "§bRejoindre la Zone VIP" , "", "§f[!] §aPas encore §fVIP §a?", "§cBoutique: §eShop.smashs.fr"));
+        }
+
+        if(sql.getRank(p).getPower() >= 10)
+        inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: " + sql.getRank(p).getName(), "§7Coins: §e" + sql.getBalance(p), "§7SmashsCoins: §b0", "§7Booster: §cBientôt"));
+        else{
+            inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: Joueur", "§7Coins: §e" + sql.getBalance(p), "§7SmashsCoins: §b0", "§7Booster: §cBientôt"));
         }
     }
 }

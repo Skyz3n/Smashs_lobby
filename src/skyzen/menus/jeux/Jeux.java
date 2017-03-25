@@ -1,4 +1,4 @@
-package skyzen.menus;
+package skyzen.menus.jeux;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

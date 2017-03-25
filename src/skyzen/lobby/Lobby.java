@@ -11,8 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import skyzen.cmds.*;
 import skyzen.event.*;
 import skyzen.menus.InventoryListener;
-import skyzen.menus.Jeux;
+import skyzen.menus.jeux.Jeux;
+import skyzen.menus.jeux.JeuxBowDragon;
 import skyzen.menus.Teleportation;
+import skyzen.menus.jeux.jeuxItemListener;
 import skyzen.playercache.PlayerData;
 import skyzen.playercache.PlayerDataManager;
 import skyzen.rank.SqlConnection;
@@ -36,20 +38,21 @@ public class Lobby extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new PlayerListener(sql), this);
         getServer().getPluginManager().registerEvents(new MessageListener(sql), this);
         getServer().getPluginManager().registerEvents(new WorldListener(sql), this);
-
+        getServer().getPluginManager().registerEvents(new CommandBlockerListener(), this);
         getServer().getPluginManager().registerEvents(new Propulseur(), this);
         getServer().getPluginManager().registerEvents(new DoubleJump(sql), this);
-
-        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(sql), this);
         getServer().getPluginManager().registerEvents(new ActionBarMessage(this), this);
+        getServer().getPluginManager().registerEvents(new jeuxItemListener(), this);
 
         getCommand("coins").setExecutor(new CoinsCMD(sql));
         getCommand("grade").setExecutor(new GradeCMD(sql));
         getCommand("msg").setExecutor(new MsgCMD());
         getCommand("jeux").setExecutor(new Jeux());
-        getCommand("tp").setExecutor(new Teleportation());
+        getCommand("tp").setExecutor(new Teleportation(sql));
         getCommand("list").setExecutor(new ListCMD());
         getCommand("ban").setExecutor(new BanCMD(sql));
+        getCommand("bowdragon").setExecutor(new JeuxBowDragon());
 
         consoleSender.sendMessage(" ");
         consoleSender.sendMessage(ChatColor.GREEN + "==================================================");

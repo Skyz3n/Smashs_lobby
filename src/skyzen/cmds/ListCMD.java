@@ -12,9 +12,9 @@ public class ListCMD implements CommandExecutor {
         Player p = (Player) sender;
         if(label.equalsIgnoreCase("list")){
             if(Bukkit.getOnlinePlayers().size() >= 2)
-                p.sendMessage("§bIl y'a actuellement §e" + Bukkit.getOnlinePlayers().size() + " joueurs §bconnectés sur le serveur.");
+                p.sendMessage("§bIl y'a actuellement §e" + Bukkit.getOnlinePlayers().size() + " joueurs §bconnectés sur §6§lSmashs");
             if(Bukkit.getOnlinePlayers().size() == 1)
-            p.sendMessage("§bIl y'a actuellement §e" + Bukkit.getOnlinePlayers().size() + " joueur §bconnecté sur le serveur.");
+            p.sendMessage("§bIl y'a actuellement §e" + Bukkit.getOnlinePlayers().size() + " joueur §bconnecté sur §6§lSmashs");
         }
         return false;
     }

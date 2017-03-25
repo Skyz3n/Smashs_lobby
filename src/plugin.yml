@@ -20,3 +20,5 @@ commands:
     description: Commande de list
   ban:
     description: Commande de ban
+  bowdragon:
+    description: Commande de jeux BowDragon
