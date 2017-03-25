@@ -12,10 +12,10 @@ public enum Rank{
     RESPMODO(70, "§a[Resp.Modérateur]", ChatColor.GREEN),
     YOUTUBEUR(60, "§d[Youtubeur]", ChatColor.LIGHT_PURPLE),
     MODERATEUR(50, "§a[Modérateur]", ChatColor.GREEN),
-    HELPER(40, "§f[Helper]", ChatColor.WHITE),
+    HELPER(40, "§3[Helper]", ChatColor.DARK_AQUA),
     PREMIUM(30, "§6[Premium]", ChatColor.GOLD),
     VIP(20, "§e[Vip]", ChatColor.YELLOW),
-    AMI(10, "§3[Ami]", ChatColor.AQUA),
+    AMI(10, "§f[Ami]", ChatColor.WHITE),
     JOUEUR(0, "§7", ChatColor.GRAY);
 
     private int power;

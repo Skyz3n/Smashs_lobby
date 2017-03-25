@@ -22,3 +22,6 @@ commands:
     description: Commande de ban
   bowdragon:
     description: Commande de jeux BowDragon
+  disponibilite:
+    description: Commande dispo
+    aliases: [dispo]

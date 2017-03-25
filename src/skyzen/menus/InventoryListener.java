@@ -87,9 +87,13 @@ public class InventoryListener implements Listener {
         if(e.getClickedInventory().getName().equalsIgnoreCase("Téléportation")){
             switch (e.getCurrentItem().getType()){
                 case SKULL_ITEM:
-                    p.sendMessage("§7Téléportation vers: §e" + e.getCurrentItem().getItemMeta().getDisplayName());
                     Player target = Bukkit.getPlayer(e.getCurrentItem().getItemMeta().getDisplayName().replace("§e", ""));
-                    p.teleport(target.getLocation());
+                    if(target == e.getWhoClicked())
+                        p.sendMessage("§cVous ne pouvez pas vous téléporter à vous même!");
+                    else{
+                        p.sendMessage("§7Téléportation vers: §e" + e.getCurrentItem().getItemMeta().getDisplayName());
+                        p.teleport(target.getLocation());
+                    }
                     p.closeInventory();
             }
         }

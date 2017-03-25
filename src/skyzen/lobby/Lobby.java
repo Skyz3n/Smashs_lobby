@@ -51,6 +51,7 @@ public class Lobby extends JavaPlugin implements Listener {
         getCommand("list").setExecutor(new ListCMD());
         getCommand("ban").setExecutor(new BanCMD(sql));
         getCommand("bowdragon").setExecutor(new JeuxBowDragon());
+        getCommand("disponibilite").setExecutor(new DispoCMD(sql));
 
         consoleSender.sendMessage(" ");
         consoleSender.sendMessage(ChatColor.GREEN + "==================================================");

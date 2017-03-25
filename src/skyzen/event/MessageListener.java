@@ -30,16 +30,16 @@ public class MessageListener implements Listener {
             TeamsTagsManager.setNameTag(p, "§280", "§9[Développeur] ", "");
         } else if (sql.getRank(p).getPower() == 70) {
             e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§370", "§a[Resp.Modérateur] ", "");
+            TeamsTagsManager.setNameTag(p, "§370", "§a[Resp.Modérateur] ", " §8[§a✔§8]");
         } else if (sql.getRank(p).getPower() == 60) {
             e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
             TeamsTagsManager.setNameTag(p, "§460", "§d[Youtubeur] ", "");
         } else if (sql.getRank(p).getPower() == 50) {
             e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§550", "§a[Modérateur] ", "");
+            TeamsTagsManager.setNameTag(p, "§550", "§a[Modérateur] ", " §8[§a✔§8]");
         } else if (sql.getRank(p).getPower() == 40) {
             e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§640", "§f[Helper] ", "");
+            TeamsTagsManager.setNameTag(p, "§640", "§3[Helper] ", " §8[§a✔§8]");
         } else if (sql.getRank(p).getPower() == 30) {
             e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
             TeamsTagsManager.setNameTag(p, "§730", "§6[Premium] ", "");
@@ -48,7 +48,7 @@ public class MessageListener implements Listener {
             TeamsTagsManager.setNameTag(p, "§820", "§e[Vip] ", "");
         } else if (sql.getRank(p).getPower() == 10) {
             e.setJoinMessage(sql.getRank(p).getName() + " " + p.getName() + " §7a rejoint le hub !");
-            TeamsTagsManager.setNameTag(p, "§910", "§3[Ami] ", "");
+            TeamsTagsManager.setNameTag(p, "§910", "§f[Ami] ", "");
         } else if (sql.getRank(p).getPower() == 0) {
             e.setJoinMessage(null);
             TeamsTagsManager.setNameTag(p, "§a", "§7", "");

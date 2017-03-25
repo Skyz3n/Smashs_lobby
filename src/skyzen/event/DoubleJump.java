@@ -46,9 +46,11 @@ public class DoubleJump implements Listener {
         p.setVelocity(v);
         p.setFlying(false);
         Particle particle = new Particle(EnumParticle.CLOUD, p.getLocation().add(0,2.25,0), true, 0.75f, 0.75f, 0.75f, 0, 35);
+        Particle particle1 = new Particle(EnumParticle.VILLAGER_HAPPY, p.getLocation().add(0,2.25,0), true, 0.75f, 0.75f, 0.75f, 0, 35);
         for (Player pl : Bukkit.getOnlinePlayers()){
             pl.playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, 1, 1);
             particle.sendPlayer(pl);
+            particle1.sendPlayer(pl);
         }
     }
 }
