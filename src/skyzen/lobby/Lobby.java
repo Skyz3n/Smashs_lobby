@@ -18,7 +18,6 @@ import skyzen.menus.jeux.jeuxItemListener;
 import skyzen.playercache.PlayerData;
 import skyzen.playercache.PlayerDataManager;
 import skyzen.rank.SqlConnection;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +26,6 @@ public class Lobby extends JavaPlugin implements Listener {
     public SqlConnection sql;
     public PlayerDataManager dataManager = new PlayerDataManager(this);
     public Map<Player, PlayerData> dataPlayers = new HashMap<>();
-
     ConsoleCommandSender consoleSender = getServer().getConsoleSender();
 
     public void onEnable() {
