@@ -1,7 +1,7 @@
 package skyzen.rank;
 
 import org.bukkit.entity.Player;
-import skyzen.lobby.Lobby;
+import skyzen.Lobby;
 import skyzen.playercache.PlayerData;
 
 import java.sql.*;

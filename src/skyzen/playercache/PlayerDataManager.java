@@ -2,7 +2,7 @@ package skyzen.playercache;
 
 import org.bukkit.entity.Player;
 
-import skyzen.lobby.Lobby;
+import skyzen.Lobby;
 
 public class PlayerDataManager {
 

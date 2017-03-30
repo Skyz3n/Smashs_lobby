@@ -1,4 +1,4 @@
-main: skyzen.lobby.Lobby
+main: skyzen.Lobby
 
 name: Smashs
 version: 1.0
