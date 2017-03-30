@@ -28,6 +28,7 @@ public class InventoryListener implements Listener {
             if(sql.getRank(p).getPower() >= 10){
                 e.getWhoClicked().teleport(new Location(e.getWhoClicked().getWorld(), 210.139, 78, -0.411, -90.4f, -2.6f));
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_HARP, 1, 1);
+                p.sendMessage("§7[§aZone-VIP§7] Vous êtes maintenant dans la Zone VIP");
                 e.getWhoClicked().closeInventory();
             }else{
                 p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);

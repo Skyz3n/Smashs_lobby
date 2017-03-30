@@ -1,4 +1,4 @@
-package skyzen.event;
+package skyzen.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

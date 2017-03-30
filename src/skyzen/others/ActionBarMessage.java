@@ -1,4 +1,4 @@
-package skyzen.event;
+package skyzen.others;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
