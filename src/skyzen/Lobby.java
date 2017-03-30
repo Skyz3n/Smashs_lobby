@@ -49,13 +49,13 @@ public class Lobby extends JavaPlugin implements Listener {
 
         getCommand("coins").setExecutor(new CoinsCMD(sql));
         getCommand("grade").setExecutor(new GradeCMD(sql));
+        getCommand("tp").setExecutor(new Teleportation(sql));
+        getCommand("ban").setExecutor(new BanCMD(sql));
+        getCommand("disponibilite").setExecutor(new DispoCMD(sql));
         getCommand("msg").setExecutor(new MsgCMD());
         getCommand("jeux").setExecutor(new Jeux());
-        getCommand("tp").setExecutor(new Teleportation(sql));
         getCommand("list").setExecutor(new ListCMD());
-        getCommand("ban").setExecutor(new BanCMD(sql));
         getCommand("bowdragon").setExecutor(new JeuxBowDragon());
-        getCommand("disponibilite").setExecutor(new DispoCMD(sql));
 
         consoleSender.sendMessage(ChatColor.GREEN + "==================================================");
         consoleSender.sendMessage(ChatColor.GREEN + "----------------- PIXELS PALACE ------------------");

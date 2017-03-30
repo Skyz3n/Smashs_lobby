@@ -84,7 +84,7 @@ public class WorldListener implements Listener {
                 p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 1, 1);
                 p.sendMessage("§6-----------------------------------------------------");
                 p.sendMessage("§bVous devez être au moins §aVIP §bpour rejoindre la Zone VIP");
-                p.sendMessage("§cBoutique: §d§nshop.smashs.fr");
+                p.sendMessage("§cBoutique: §d§nshop.pixelspalace.fr");
                 p.sendMessage("§6-----------------------------------------------------");
             }
         }

@@ -56,13 +56,13 @@ public class MessageListener implements Listener {
 
         p.sendMessage("");
         p.sendMessage("");
-        p.sendMessage("§eConnexion sur Smashs en cours...");
+        p.sendMessage("§eConnexion sur PixelsPalace en cours...");
         for (int x = 0; x < 10; x++)
             p.sendMessage("");
         p.sendMessage("§6-----------------------------------------------------");
         p.sendMessage("§cNous vous rappelons que le serveur est en version §bBêta");
         p.sendMessage("§cMerci d'accepter les certains bugs liés au sereur.");
-        p.sendMessage("§cN'hésitez pas à nous signaler un bug sur §eforum.smashs.fr");
+        p.sendMessage("§cN'hésitez pas à nous signaler un bug sur §eforum.pixelspalace.fr");
         p.sendMessage(" ");
         p.sendMessage("§aLe discord est disponible ici: §bhttps://discord.app/ §c(Test)");
         p.sendMessage("§6-----------------------------------------------------");

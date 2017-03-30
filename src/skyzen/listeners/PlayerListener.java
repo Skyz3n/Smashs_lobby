@@ -37,22 +37,22 @@ public class PlayerListener implements Listener {
         p.setFoodLevel(20);
         p.setHealth(p.getMaxHealth());
 
-        Title.sendTitle(p, 20, 50, 20, "§bBienvenue sur le serveur §eSmashs", "§7Le serveur est en §6Beta");
-        Title.sendTabTitle(p, "&7Bienvenue sur §eSmashs§7, " + p.getDisplayName(), "§7Vous pouvez nous suivre sur twitter: §b@SmashsFR");
+        Title.sendTitle(p, 20, 50, 20, "§bBienvenue sur le serveur §ePixelsPalace", "§7Le serveur est en §6Beta");
+        Title.sendTabTitle(p, "&7Bienvenue sur §ePixelsPalace§7, " + p.getDisplayName(), "§7Vous pouvez nous suivre sur twitter: §b@PixelsPalace");
 
         //Inventaire
         PlayerInventory inv = p.getInventory();
         inv.clear();
 
         inv.setItem(0, ItemModifier.setText(new ItemStack(Material.NAME_TAG, 1), "§bSélecteur de jeux"));
-        inv.setItem(1, ItemModifier.setText(new ItemStack(Material.CHEST, 1), "§aSmashsChest"));
+        inv.setItem(1, ItemModifier.setText(new ItemStack(Material.CHEST, 1), "§aPixelsChest"));
         inv.setItem(7, ItemModifier.setText(new ItemStack(Material.EMERALD, 1), "§6Boutique"));
         inv.setItem(8, ItemModifier.setText(new ItemStack(Material.NETHER_STAR, 1), "§6Sélecteur de Hubs"));
 
         inv.setItem(9, ItemModifier.setText(new ItemStack(Material.GOLD_BOOTS, 1), "§eJump", "§7Accéder au jump"));
         inv.setItem(12, ItemModifier.setText(new ItemStack(Material.BOOK, 1), "§6Succés"));
         inv.setItem(13, ItemModifier.setText(new ItemStack(Material.BED, 1), "§6Retour au spawn"));
-        inv.setItem(14, ItemModifier.setText(new ItemStack(Material.PAPER, 1), "§6Informations", "§7Forum: §dforum.smashs.fr", "§7Boutique: §ashop.smashs.fr", "§7Teamspeak: §ets.smashs.fr"));
+        inv.setItem(14, ItemModifier.setText(new ItemStack(Material.PAPER, 1), "§6Informations", "§7Forum: §dforum.pixelspalace.fr", "§7Boutique: §ashop.pixelspalace.fr", "§7Teamspeak: §ets.pixelspalace.fr"));
         inv.setItem(17, ItemModifier.setText(new ItemStack(Material.COOKED_FISH, 1), "§eAmis", "§7Voir ses amis"));
 
         if(sql.getRank(p).getPower() >= 40)
@@ -61,13 +61,13 @@ public class PlayerListener implements Listener {
         if(sql.getRank(p).getPower() >= 10)
         inv.setItem(35, ItemModifier.setText(new ItemStack(Material.EXP_BOTTLE, 1), "§eZone VIP", "§bRejoindre la Zone VIP"));
         else{
-            inv.setItem(35, ItemModifier.setText(new ItemStack(Material.EXP_BOTTLE, 1), "§eZone VIP", "§bRejoindre la Zone VIP" , "", "§f[!] §aPas encore §fVIP §a?", "§cBoutique: §eShop.smashs.fr"));
+            inv.setItem(35, ItemModifier.setText(new ItemStack(Material.EXP_BOTTLE, 1), "§eZone VIP", "§bRejoindre la Zone VIP" , "", "§f[!] §aPas encore §fVIP §a?", "§cBoutique: §eShop.pixelspalace.fr"));
         }
 
         if(sql.getRank(p).getPower() >= 10)
-        inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: " + sql.getRank(p).getName(), "§7Coins: §e" + sql.getBalance(p), "§7SmashsCoins: §b0", "§7Booster: §cBientôt"));
+        inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: " + sql.getRank(p).getName(), "§7Coins: §e" + sql.getBalance(p), "§7PixelsCoins: §b0", "§7Booster: §cBientôt"));
         else{
-            inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: Joueur", "§7Coins: §e" + sql.getBalance(p), "§7SmashsCoins: §b0", "§7Booster: §cBientôt"));
+            inv.setItem(22, ItemModifier.setText(ItemModifier.giveSkull(p.getName()), "§d§n" + p.getDisplayName(), "§7Grade: Joueur", "§7Coins: §e" + sql.getBalance(p), "§7PixelsCoins: §b0", "§7Booster: §cBientôt"));
         }
     }
 }

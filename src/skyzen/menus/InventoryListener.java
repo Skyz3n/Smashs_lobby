@@ -35,7 +35,7 @@ public class InventoryListener implements Listener {
                 e.getWhoClicked().closeInventory();
                 p.sendMessage("§6-----------------------------------------------------");
                 p.sendMessage("§bVous devez être au moins §aVIP §bpour rejoindre la Zone VIP");
-                p.sendMessage("§cBoutique: §d§nshop.smashs.fr");
+                p.sendMessage("§cBoutique: §d§nshop.pixelspalace.fr");
                 p.sendMessage("§6-----------------------------------------------------");
             }
         }
