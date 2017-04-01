@@ -36,13 +36,13 @@ public class ActionBarMessage implements Listener {
                             Title.sendActionBar(p, "§cLe serveur est cours de développement !");
                             break;
                         case 2:
-                            Title.sendActionBar(p, "§e|§d|§6| §bBienvenue sur §eSmashs §6|§d|§e|");
+                                Title.sendActionBar(p, "§e|§d|§6| §bBienvenue sur §ePixelsPalace §6|§d|§e|");
                             break;
                         case 3:
                             Title.sendActionBar(p, "§7Le serveur est en §6Pre-Alpha §7!");
                             break;
                         case 4:
-                            Title.sendActionBar(p, "§aBoutique: §ehttps://shop.smashs.fr/");
+                            Title.sendActionBar(p, "§aBoutique: §ehttps://shop.pixelspalace.fr/");
                             break;
                     }
                 }

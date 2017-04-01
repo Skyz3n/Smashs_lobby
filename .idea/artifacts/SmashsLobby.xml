@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="SmashsLobby">
-    <output-path>$USER_HOME$/Desktop</output-path>
+    <output-path>$USER_HOME$/Desktop/Serveur/plugins</output-path>
     <root id="archive" name="SmashsLobby.jar">
       <element id="module-output" name="Smashs_lobby" />
     </root>

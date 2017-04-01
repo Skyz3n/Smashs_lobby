@@ -8,3 +8,4 @@
 // Animaux
 // Fly
 // Régler le StaffChat
+// Command ping / tps / lag
