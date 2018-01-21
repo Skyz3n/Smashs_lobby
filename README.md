@@ -1,4 +1,4 @@
-![Skyzen](https://i.imgur.com/9muFs5q.png "Skyzen logo")
+![Skyzen](https://i.imgur.com/mZBeReo.png "Skyzen logo")
 
 ## Smashs - Lobby (Débutant - Pas d'API)
 
